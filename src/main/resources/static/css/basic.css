@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+@import url(reset.css);
+
+/*
+   取消默认设置
+*/
+a{
+	text-decoration:none;
+	    color: black;
+}
+
+
+
+.container {
+	height: 90%;
+	margin: 0 auto;
+	min-width: 800px;
+	width: 80%;
+	padding-top: 20px;
+}
+
+.container .left, .right {
+	float: left;
+}
+
+.container .left {
+	width: 15%;
+	height: 100%;
+}
+
+.container .right {
+	width: 85%;
+}
+
+.container .left .placeholder {
+	height: 10%;
+}
+
+.container .left .menu ul {
+	font-size: 1.2em;
+	text-align: center;
+	line-height: 1.6;
+}
+
+.container .left .menu ul li:hover {
+	font-size: 1.3em;
+	background-color: red;
+	width: 80%;
+	cursor: pointer;
+}
+
+.container .right .title :nth-child(1) {
+	font-size: 30px;
+	height: 10%;
+	line-height: 2;
+}
+
+.container .right .title :nth-child(2) {
+	background-color: #ccc;
+	width: 100%;
+	height: 1px;
+}
+
+.container .right .articles ul {
+	padding-top: 2%;
+	padding-left: 3%;
+	font-size: 1.4em;
+	line-height: 1.5;
+}
+.container .right .articles ul li :nth-child(1) {
+	margin-right: 2%;
+	color: #999999;
+}
+
+.container .right .articles ul li :nth-child(2) {
+	color: #fd0b0b;
+}
+
+.container .right .articles ul li :nth-child(2):hover {
+	text-decoration: underline;
+	color: darkblue;
+	cursor: pointer;
+}
+
+.footer {
+	text-align: center;
+	border-top: 1px dashed #CCC;
+	padding-top: 1%;
+}
+
+.clear {
+	clear: both;
+}
+
+.container .right .pagination {
+	height: 6%;
+	text-align: center;
+	font-size: 1.1em;
+	line-height: 2;
+}
+
+.container .right .pagination :nth-child(1) {
+	cursor: pointer;
+}
+
+.container .right .pagination :nth-child(3) {
+	cursor: pointer;
+}
+
+
