@@ -61,33 +61,35 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="/admin">文章</a></li>
             <li><a href="#">Reports</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
+          <!--<ul class="nav nav-sidebar">-->
+            <!--<li><a href="">Nav item</a></li>-->
+            <!--<li><a href="">Nav item again</a></li>-->
+            <!--<li><a href="">One more nav</a></li>-->
+            <!--<li><a href="">Another nav item</a></li>-->
+            <!--<li><a href="">More navigation</a></li>-->
+          <!--</ul>-->
+          <!--<ul class="nav nav-sidebar">-->
+            <!--<li><a href="">Nav item again</a></li>-->
+            <!--<li><a href="">One more nav</a></li>-->
+            <!--<li><a href="">Another nav item</a></li>-->
+          <!--</ul>-->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header"></h2>
 
           <form class="form-inline" id="addForm">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="输入文章标题" name="name">
+              <input type="text" class="form-control" placeholder="输入文章标题" name="name" style="width: 60rem;margin-bottom: 10px;margin-top: 10px;">
             </div>
             <div id="test-editormd">
-              <textarea style="display:none;" name="content"></textarea>
+              <textarea class="editormd-markdown-textarea" style="display:none;" name="code"></textarea>
+              <textarea class="editormd-html-textarea" name="html"></textarea>
+
             </div>
             <button type="button" class="btn btn-default" id="saveBtn">保存</button>
           </form>
@@ -102,7 +104,7 @@
 
 
     <script th:src="@{/js/editormd.min.js}"></script>
-    <script th:src="@{/js/article/article.js}"></script>
+    <script th:src="@{/js/article/addArticle.js}"></script>
 
 
 

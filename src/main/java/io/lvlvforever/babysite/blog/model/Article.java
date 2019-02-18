@@ -18,7 +18,7 @@ public class Article {
     private Long id;
     private String name;
 
-    private String content;
+    private String code;
     private Date date;
 
     private Collection collection;

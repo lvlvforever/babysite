@@ -22,6 +22,25 @@ import java.util.Map;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
+
+
+    @GetMapping("")
+    public String getArticle(@RequestParam String id,Model model) {
+        ArticleVO vo = articleService.getArticle(id);
+        if (vo == null) {
+            return "error";
+        }
+        model.addAttribute("article", vo);
+        return "article";
+
+    }
+
+
+
+
+
+
+
     @ResponseBody
     @PostMapping("add")
     public Map<String, Object> addArticle(ArticleParam param) {
@@ -30,6 +49,12 @@ public class ArticleController {
         map.put("objId", objId);
         return map;
     }
+
+    @GetMapping("addArticleView")
+    public String addArticlePre() {
+        return "addArticle";
+    }
+
 
     @GetMapping("articles")
     public String queryArticles(Model model) {

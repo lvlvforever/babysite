@@ -13,7 +13,8 @@ import java.util.Date;
 public class ArticleParam implements AutoIncrementable {
 
     private String name;
-    private String content;
+    private String code;
+    private String html;
 
     @Override
     public String getAutoIncrementField() {

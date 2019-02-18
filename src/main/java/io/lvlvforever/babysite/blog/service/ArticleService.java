@@ -35,6 +35,17 @@ public class ArticleService {
         return true;
     }
 
+    public ArticleVO getArticle(String id) {
+
+        Article article = repo.findById(id).orElse(null);
+        if (article == null) {
+            return null;
+        }
+        ArticleVO vo = modelService.parseArticle(article);
+        return vo;
+
+
+    }
 
 
     public List<ArticleVO> queryArticles() {

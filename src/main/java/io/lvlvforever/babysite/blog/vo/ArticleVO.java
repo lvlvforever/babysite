@@ -14,6 +14,6 @@ public class ArticleVO {
     private Long id;
     private String name;
 
-    private String content;
+    private String code;
     private String date;
 }
