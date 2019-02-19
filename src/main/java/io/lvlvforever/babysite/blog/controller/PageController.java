@@ -23,7 +23,12 @@ public class PageController {
 
         List<ArticleVO> articles = articleService.queryArticles();
         model.addAttribute("articles", articles);
-        return "index";
+        return "front/index";
+    }
+
+    @GetMapping("contact")
+    public String contact() {
+        return "front/contact";
     }
 
 }
