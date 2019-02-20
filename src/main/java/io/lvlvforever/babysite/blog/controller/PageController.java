@@ -30,5 +30,12 @@ public class PageController {
     public String contact() {
         return "front/contact";
     }
-
+    @GetMapping("tool")
+    public String tool() {
+        return "tool/tool";
+    }
+    @GetMapping("tool/timestamp")
+    public String timestamp() {
+        return "tool/timestamp";
+    }
 }

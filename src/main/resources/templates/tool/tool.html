@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>lvlvforever</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/blog.css}" rel="stylesheet">
+    <!--<link rel="stylesheet" th:href="@{/css/style.css}" />-->
+    <link rel="stylesheet" th:href="@{/css/editormd.css}" />
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item active" href="/">首页</a>
+            <a class="blog-nav-item" href="/tool">常用工具</a>
+            <a class="blog-nav-item" href="/contact">关于</a>
+        </nav>
+    </div>
+</div>
+
+<div class="container-fluid" style="width: 80%">
+
+    <div class="blog-header">
+        <h1 class="blog-title">Hello World ! </h1>
+        <p class="lead blog-description">记录自己编程人生的点滴</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+
+
+<div class="row">
+
+    <div class="col-sm-3">
+        <button class="btn btn-primary" id="timestamp">时间戳转换</button>
+
+    </div>
+    <div class="col-sm-3">
+        <button class="btn btn-primary">文字传输</button>
+
+    </div>
+    <div class="col-sm-3">
+        <button class="btn btn-primary">文件传输</button>
+
+    </div>
+    <div class="col-sm-3">
+        <button class="btn btn-primary">base64编解码</button>
+
+    </div>
+
+</div>
+
+
+
+            <!--<nav>-->
+            <!--<ul class="pager">-->
+            <!--<li><a href="#">Previous</a></li>-->
+            <!--<li><a href="#">Next</a></li>-->
+            <!--</ul>-->
+            <!--</nav>-->
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>关于</h4>
+                <p></p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer class="blog-footer">
+    <p>行动是治愈恐惧的良药，而犹豫、拖延不断滋养恐惧。---列夫·托尔斯泰</p>
+</footer>
+
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $(document).on('click','#timestamp',function () {
+            window.location.href = '/tool/timestamp';
+        })
+
+
+
+    })
+
+
+
+
+</script>
+</body>
+</html>

@@ -98,13 +98,13 @@
                                 <button type="button" class="btn btn-primary form-control-static">转换</button>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <select class="form-control">
                                     <option>yyyy-MM-dd HH:mm:ss</option>
                                     <option>秒</option>
                                 </select>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <p  class="">2019-02-20 20:00:00</p>
 
                             </div>
@@ -116,6 +116,53 @@
 
                 </div>
             </div>
+
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">时间转换为时间戳</h3>
+                </div>
+                <div class="panel panel-body">
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+
+
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="form-control">
+                                    <option>中国时区</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-sm-1">
+
+                                <button type="button" class="btn btn-primary form-control-static">转换</button>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>毫秒</option>
+                                    <option>秒</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <p  class="">15555555555555</p>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
 
 
 
@@ -151,23 +198,6 @@
 
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script th:src="@{/lib/marked.min.js}"></script>
 
-
-<script th:src="@{/lib/prettify.min.js}"></script>
-<script th:src="@{/lib/raphael.min.js}"></script>
-<script th:src="@{/lib/underscore.min.js}"></script>
-<script th:src="@{/lib/sequence-diagram.min.js}"></script>
-<script th:src="@{/lib/flowchart.min.js}"></script>
-<script th:src="@{/lib/jquery.flowchart.min.js}"></script>
-<script th:src="@{/js/editormd.min.js}"></script>
-
-
-
-<script th:src="@{/js/article/article.js}"></script>
-
-<script language='javascript' th:inline="javascript">
-    var code = [[${article.code}]];
-</script>
 </body>
 </html>
