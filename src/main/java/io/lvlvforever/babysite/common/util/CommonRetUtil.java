@@ -1,6 +1,9 @@
 
 package io.lvlvforever.babysite.common.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.util.JSON;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,8 +61,8 @@ public class CommonRetUtil {
         response.setHeader("Content-Type","application/json; charset=UTF-8");
         try(PrintWriter writer = response.getWriter()){
 
-
-//            writer.write(JSON.toJSONString(result));
+            ObjectMapper mapper = new ObjectMapper();
+            writer.write(mapper.writeValueAsString(result));
 
 
             writer.flush();

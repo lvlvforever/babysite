@@ -54,7 +54,10 @@
     color: #fff;
     text-decoration: none;
   }
-  
+
+  .blog-nav{
+      font-size: 1.8rem;
+  }
   /* Active state gets a caret at the bottom */
   .blog-nav .active {
     color: #fff;

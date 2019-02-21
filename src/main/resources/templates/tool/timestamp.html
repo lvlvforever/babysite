@@ -58,10 +58,10 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <p class="form-control-static">2019-02-20 10:00:00</p>
+                                <p class="form-control-static" id="curTime">2019-02-20 10:00:00</p>
                             </div>
                             <div class="col-sm-5">
-                                <p class="form-control-static">150000000</p>
+                                <p class="form-control-static" id="curStamp">150000000</p>
                             </div>
                         </div>
 
@@ -82,30 +82,30 @@
 
 
                             <div class="col-sm-3">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="timestamp" placeholder="时间戳...">
 
                             </div>
                             <div class="col-sm-2">
-                                <select class="form-control">
-                                    <option>毫秒</option>
-                                    <option>秒</option>
+                                <select class="form-control" id="timeType">
+                                    <option value="1">毫秒</option>
+                                    <option value="2">秒</option>
                                 </select>
 
                             </div>
 
                             <div class="col-sm-1">
 
-                                <button type="button" class="btn btn-primary form-control-static">转换</button>
+                                <button type="button" class="btn btn-primary form-control-static" id="stamp2timeBtn">转换</button>
                             </div>
 
                             <div class="col-sm-3">
                                 <select class="form-control">
-                                    <option>yyyy-MM-dd HH:mm:ss</option>
-                                    <option>秒</option>
+                                    <option value="1">yyyy-MM-dd HH:mm:ss</option>
+                                    <!--<option value="2">yyyy</option>-->
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <p  class="">2019-02-20 20:00:00</p>
+                                <p  class="" id="stamp2time"></p>
 
                             </div>
 
@@ -129,7 +129,7 @@
 
 
                             <div class="col-sm-3">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="time" placeholder="输入格式:2019-02-02 10:30:30">
 
                             </div>
                             <div class="col-sm-2">
@@ -141,17 +141,17 @@
 
                             <div class="col-sm-1">
 
-                                <button type="button" class="btn btn-primary form-control-static">转换</button>
+                                <button type="button" class="btn btn-primary form-control-static" id="time2stampBtn">转换</button>
                             </div>
 
                             <div class="col-sm-3">
                                 <select class="form-control">
-                                    <option>毫秒</option>
-                                    <option>秒</option>
+                                    <option value="1">毫秒</option>
+                                    <!--<option value="2">秒</option>-->
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <p  class="">15555555555555</p>
+                                <p  class="" id="time2stamp" ></p>
 
                             </div>
 
@@ -167,12 +167,7 @@
 
 
 
-            <!--<nav>-->
-            <!--<ul class="pager">-->
-            <!--<li><a href="#">Previous</a></li>-->
-            <!--<li><a href="#">Next</a></li>-->
-            <!--</ul>-->
-            <!--</nav>-->
+
 
         </div><!-- /.blog-main -->
 
@@ -197,7 +192,65 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
 
+    $(function () {
+
+        setInterval(refreshCurTime, 1000);
+
+        $(document).on('click','#time2stampBtn',function () {
+
+            $.get('/tool/time2stamp?time='+$('#time').val(),function(data){
+                $('#time2stamp').html(data.time);
+
+            })
+
+
+        })
+
+        $(document).on('click','#stamp2timeBtn',function () {
+
+            $.get('/tool/stamp2time?stamp='+$('#timestamp').val(),function(data){
+                $('#stamp2time').html(data.time);
+
+            })
+
+
+        })
+
+
+    });
+
+    function refreshCurTime() {
+
+        var stamp = new Date().getTime();
+        $('#curStamp').html(stamp);
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        $('#curTime').html(year + '-' + padding(month) + '-' + padding(day) + ' ' + padding(hour) + ':' + padding(minute) + ':' + padding(second));
+
+    }
+
+    function padding(value) {
+        if (value < 10) {
+            return '0' + value;
+        }
+        return value;
+    }
+
+
+
+
+
+
+
+
+</script>
 
 </body>
 </html>
