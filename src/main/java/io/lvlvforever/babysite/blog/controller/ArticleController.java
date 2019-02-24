@@ -34,23 +34,18 @@ public class ArticleController {
     }
 
 
-
-
-
-
-
     @ResponseBody
     @PostMapping("add")
     public Map<String, Object> addArticle(ArticleParam param) {
         Map<String, Object> map = CommonRetUtil.retSuccess();
         String objId = articleService.add(param);
-        map.put("objId", objId);
+        map.put("objectId", objId);
         return map;
     }
 
     @GetMapping("addArticleView")
     public String addArticlePre() {
-        return "addArticle";
+        return "backend/addArticle";
     }
 
 
@@ -59,7 +54,7 @@ public class ArticleController {
 
         List<ArticleVO> articles = articleService.queryArticles();
         model.addAttribute("articles", articles);
-        return "dashboard-articles";
+        return "backend/articles";
     }
 
     @ResponseBody
