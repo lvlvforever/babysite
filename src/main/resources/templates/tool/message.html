@@ -30,7 +30,7 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="blog-nav">
-            <a class="blog-nav-item " href="/">首页</a>
+            <a class="blog-nav-item" href="/">首页</a>
             <a class="blog-nav-item active" href="/tool">常用工具</a>
             <a class="blog-nav-item" href="/contact">关于</a>
         </nav>
@@ -48,35 +48,51 @@
         <div class="col-sm-8 blog-main">
 
 
-<div class="row">
-
-    <div class="col-sm-3">
-        <button class="btn btn-primary" id="timestamp">时间戳转换</button>
-
-    </div>
-    <div class="col-sm-3">
-        <button class="btn btn-primary" id="message">文字传输</button>
-
-    </div>
-    <div class="col-sm-3">
-        <button class="btn btn-primary" id="myfile">文件传输</button>
-
-    </div>
-    <div class="col-sm-3">
-        <button class="btn btn-primary" id="base64">base64编解码</button>
-
-    </div>
-
-</div>
 
 
 
-            <!--<nav>-->
-            <!--<ul class="pager">-->
-            <!--<li><a href="#">Previous</a></li>-->
-            <!--<li><a href="#">Next</a></li>-->
-            <!--</ul>-->
-            <!--</nav>-->
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">文字暂存服务</h3>
+                </div>
+                <div class="panel panel-body">
+
+                    <form >
+                        <div class="form-group">
+
+
+                            <div class="col-sm-12">
+                                <p>输入需要暂时保存的文字信息，稍后使用提取码提取信息</p>
+                                <p>[信息仅保存48小时，过期删除]</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" rows="3" id="message"></textarea>
+
+                            </div>
+                            <div class="col-sm-12">
+                                <p>提取地址是:</p>
+                                <a id="restore-url">点击我访问</a>
+                                <p>提取码:</p>
+                                <p id="token"></p>
+                            </div>
+                            <div class="col-sm-12">
+                                <button class="btn btn-default" type="button" id="store-message">暂存</button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+
+
+
+
 
         </div><!-- /.blog-main -->
 
@@ -102,26 +118,36 @@
 
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
+
     $(function () {
-        $(document).on('click','#timestamp',function () {
-            window.location.href = '/tool/timestamp';
-        })
-        $(document).on('click','#message',function () {
-            window.location.href = '/tool/message';
-        })
-        $(document).on('click','#myfile',function () {
-            window.location.href = '/tool/myfile';
-        })
-        $(document).on('click','#base64',function () {
-            window.location.href = '/tool/base64';
+
+
+        $(document).on('click','#store-message',function () {
+            var message = $('#message').val();
+
+            $.post('/tool/storeMessage',{content:message},function(data){
+
+                $('#restore-url').attr("href","/tool/getMessage?token="+data.token);
+                $('#token').html(data.token);
+
+            })
+
+
         })
 
 
-    })
+    });
+
+
+
+
+
+
 
 
 
 
 </script>
+
 </body>
 </html>

@@ -38,4 +38,20 @@ public class PageController {
     public String timestamp() {
         return "tool/timestamp";
     }
+    @GetMapping("tool/message")
+    public String message() {
+        return "tool/message";
+    }
+    @GetMapping("tool/myfile")
+    public String myfile() {
+        return "tool/myfile";
+    }
+    @GetMapping("tool/base64")
+    public String base64() {
+        return "tool/base64";
+    }
+
+
+
+
 }
