@@ -26,8 +26,6 @@ public class ToolController {
         Map<String, Object> map = CommonRetUtil.retSuccess();
         map.put("time", DateUtils.parseDateToTimestampWithDefaultPattern(time));
         return map;
-
-
     }
     @GetMapping("stamp2time")
     public Map<String, Object> stamp2time(@NotNull Long stamp) {
