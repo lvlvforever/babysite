@@ -79,11 +79,11 @@ public class ToolController {
 
             String token;
             boolean flag = false;
-            do{
-                token = RandomStringUtils.randomAlphanumeric(4).toLowerCase();
-                flag =
-
-            }while ()
+//            do{
+//                token = RandomStringUtils.randomAlphanumeric(4).toLowerCase();
+//                flag =
+//
+//            }while ()
 
 
 
@@ -91,7 +91,7 @@ public class ToolController {
 
             map.put("url", "/common/gridfs/image/" + objectId);
             map.put("baseUrl", baseUrl);
-            map.put("url")
+//            map.put("url")
         } catch (Exception e) {
             map = CommonRetUtil.retServerBusy();
         }
