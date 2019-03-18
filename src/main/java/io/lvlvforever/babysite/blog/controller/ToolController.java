@@ -1,7 +1,12 @@
 package io.lvlvforever.babysite.blog.controller;
 
+import com.mongodb.client.gridfs.GridFSBucket;
+import com.mongodb.client.gridfs.GridFSBuckets;
+import com.mongodb.client.gridfs.model.GridFSFile;
 import io.lvlvforever.babysite.blog.dao.MessageRepo;
 import io.lvlvforever.babysite.blog.model.Message;
+import io.lvlvforever.babysite.blog.model.UserFile;
+import io.lvlvforever.babysite.blog.service.UserFileService;
 import io.lvlvforever.babysite.common.service.MongoGridFsService;
 import io.lvlvforever.babysite.common.util.CommonRetUtil;
 import io.lvlvforever.babysite.common.util.DateUtils;
@@ -12,8 +17,11 @@ import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.Map;
 
 /**
@@ -24,6 +32,9 @@ import java.util.Map;
 public class ToolController {
     @Autowired
     private MongoGridFsService mongoGridFsService;
+    @Autowired
+    private UserFileService userFileService;
+
     @Autowired
     private MongoDbFactory mongoDbFactory;
     @Value("${server.base.url}")
@@ -79,23 +90,39 @@ public class ToolController {
 
             String token;
             boolean flag = false;
-//            do{
-//                token = RandomStringUtils.randomAlphanumeric(4).toLowerCase();
-//                flag =
-//
-//            }while ()
-
-
-
-            map.put("", objectId);
-
-            map.put("url", "/common/gridfs/image/" + objectId);
+            do {
+                token = RandomStringUtils.randomAlphanumeric(4).toLowerCase();
+                flag = userFileService.findOrCreate(token, objectId);
+            } while (!flag);
+            map.put("token", token);
             map.put("baseUrl", baseUrl);
-//            map.put("url")
         } catch (Exception e) {
             map = CommonRetUtil.retServerBusy();
         }
         return map;
+    }
+    @GetMapping("getFile")
+    public void downloadFile(@RequestParam  String token,HttpServletResponse response) {
+        UserFile userFile = userFileService.findByToken(token);
+        if (userFile == null) {
+            return;
+        }
+        String objectId = userFile.getFileObjectId();
+        GridFSFile file = mongoGridFsService.findFileInGridFs(objectId);
+        if (file == null) {
+            return;
+        }
+        try (OutputStream out = response.getOutputStream()) {
+
+            String name = file.getFilename();
+            response.setContentType("application/octet-stream");
+            String downloadName = URLEncoder.encode(name,"UTF-8").replaceAll("\\+", "%20");
+            response.setHeader("Content-Disposition", "attachment;filename*=utf-8'zh_cn'"+downloadName);
+            GridFSBucket bucket = GridFSBuckets.create(mongoDbFactory.getDb());
+            bucket.downloadToStream(file.getId(), out);
+            out.flush();
+        } catch (Exception e) {
+        }
     }
 
 }

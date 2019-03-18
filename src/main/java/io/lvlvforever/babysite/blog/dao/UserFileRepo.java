@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface UserFileRepo extends MongoRepository<UserFile,String>,CustomUserFileRepo{
     boolean existsByToken(String token);
 
+    UserFile findByToken(String token);
 }
