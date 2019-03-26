@@ -31,8 +31,11 @@ public class DateUtils {
 
     }
 
-    public static String parseTimestamp2DefaultPatter(Long stamp) {
+    public static String parseTimestamp2DefaultPattern(Long stamp) {
         return Instant.ofEpochMilli(stamp).atZone(ZoneId.systemDefault()).format(DEFAULT_FORMATTER);
     }
 
+    public static String parseTimestampInSeconds2DefaultPattern(Long stamp) {
+        return Instant.ofEpochMilli(stamp*1000).atZone(ZoneId.systemDefault()).format(DEFAULT_FORMATTER);
+    }
 }

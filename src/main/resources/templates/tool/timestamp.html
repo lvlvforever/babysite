@@ -41,7 +41,7 @@
 
     <div class="blog-header">
         <h1 class="blog-title">Hello World ! </h1>
-        <p class="lead blog-description">记录自己编程人生的点滴</p>
+        <p class="lead blog-description">记录自己人生的点滴</p>
     </div>
 
     <div class="row">
@@ -58,9 +58,11 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-5">
+                                <span>当前时间:</span>
                                 <p class="form-control-static" id="curTime">2019-02-20 10:00:00</p>
                             </div>
                             <div class="col-sm-5">
+                                <span>当前毫秒:</span>
                                 <p class="form-control-static" id="curStamp">150000000</p>
                             </div>
                         </div>
@@ -129,7 +131,7 @@
 
 
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="time" placeholder="输入格式:2019-02-02 10:30:30">
+                                <input type="text" class="form-control" id="time" placeholder="格式:2019-02-02 10:30:30">
 
                             </div>
                             <div class="col-sm-2">
@@ -210,7 +212,11 @@
 
         $(document).on('click','#stamp2timeBtn',function () {
 
-            $.get('/tool/stamp2time?stamp='+$('#timestamp').val(),function(data){
+            var timeType = $('#timeType').val();
+            var timestamp = $('#timestamp').val();
+            var url = '/tool/stamp2time?stamp=' + timestamp + '&timeType=' + timeType;
+
+            $.get(url,function(data){
                 $('#stamp2time').html(data.time);
 
             })

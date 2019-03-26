@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by lvlvforever on 2019/3/16.
  */
-@Document("message")
+@Document("userfile")
 @Data
 public class UserFile {
     @Id

@@ -49,10 +49,12 @@ public class ToolController {
         return map;
     }
     @GetMapping("stamp2time")
-    public Map<String, Object> stamp2time(@NotNull Long stamp) {
+    public Map<String, Object> stamp2time(@NotNull Long stamp,Integer timeType) {
 
         Map<String, Object> map = CommonRetUtil.retSuccess();
-        map.put("time", DateUtils.parseTimestamp2DefaultPatter(stamp));
+        String time = timeType == 1 ? DateUtils.parseTimestamp2DefaultPattern(stamp) : DateUtils.parseTimestampInSeconds2DefaultPattern(stamp);
+
+        map.put("time", time);
         return map;
     }
     @GetMapping("getMessage")
@@ -93,6 +95,7 @@ public class ToolController {
             do {
                 token = RandomStringUtils.randomAlphanumeric(4).toLowerCase();
                 flag = userFileService.findOrCreate(token, objectId);
+                System.err.println(token);
             } while (!flag);
             map.put("token", token);
             map.put("baseUrl", baseUrl);
@@ -120,8 +123,10 @@ public class ToolController {
             response.setHeader("Content-Disposition", "attachment;filename*=utf-8'zh_cn'"+downloadName);
             GridFSBucket bucket = GridFSBuckets.create(mongoDbFactory.getDb());
             bucket.downloadToStream(file.getId(), out);
+            System.err.println(file.getId()+file.getFilename());
             out.flush();
         } catch (Exception e) {
+            System.err.println(e);
         }
     }
 

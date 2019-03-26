@@ -41,7 +41,7 @@
 
     <div class="blog-header">
         <h1 class="blog-title">Hello World ! </h1>
-        <p class="lead blog-description">记录自己编程人生的点滴</p>
+        <p class="lead blog-description">记录自己人生的点滴</p>
     </div>
 
     <div class="row">
@@ -67,7 +67,7 @@
                                 <p>[文件仅保存48小时，过期删除]</p>
                             </div>
                             <div class="col-sm-12">
-                                <textarea class="form-control" rows="3" id="message"></textarea>
+                                <input id="myfile" type="file">
 
                             </div>
                             <div class="col-sm-12">
@@ -77,7 +77,7 @@
                                 <p id="token"></p>
                             </div>
                             <div class="col-sm-12">
-                                <button class="btn btn-default" type="button" id="store-message">暂存</button>
+                                <button class="btn btn-default" type="button" id="store-file">暂存</button>
                             </div>
 
                         </div>
@@ -122,17 +122,21 @@
     $(function () {
 
 
-        $(document).on('click','#store-message',function () {
-            var message = $('#message').val();
-
-            $.post('/tool/storeMessage',{content:message},function(data){
-
-                $('#restore-url').attr("href","/tool/getMessage?token="+data.token);
+        $(document).on('click','#store-file',function () {
+            var formData = new FormData();
+            formData.append('file', $('#myfile')[0].files[0]);
+            $.ajax({
+                url: '/tool/storeFile',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+            }).done(function(data){
+                var url = data.baseUrl + '/tool/getFile?token=' + data.token;
+                $('#restore-url').attr("href",url);
                 $('#token').html(data.token);
-
             })
-
-
         })
 
 

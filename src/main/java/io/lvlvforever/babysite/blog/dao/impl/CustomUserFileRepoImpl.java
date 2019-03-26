@@ -31,6 +31,6 @@ public class CustomUserFileRepoImpl implements CustomUserFileRepo {
         options.upsert(true);
         options.returnNew(true);
         UserFile file = mongoTemplate.findAndModify(query, update, options, UserFile.class);
-        return file == null;
+        return file != null;
     }
 }
