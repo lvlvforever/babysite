@@ -52,36 +52,10 @@
                     <h3 class="panel-title">文字暂存服务</h3>
                 </div>
                 <div class="panel panel-body">
-
-                    <form >
-                        <div class="form-group">
-
-
-                            <div class="col-sm-12">
-                                <p>输入需要暂时保存的文字信息，稍后使用提取码提取信息</p>
-                                <p>将提取码附在</p>
-                                <p th:text="${messageUrl}" style="font-weight: bold;">messageUrl</p>
-                                <p>之后即可查看保存的信息</p>
-                                <p>[信息仅保存48小时，过期删除]</p>
-                            </div>
-                            <div class="col-sm-12">
-                                <textarea class="form-control" rows="3" id="message"></textarea>
-
-                            </div>
-                            <div class="col-sm-12">
-                                <p>提取地址是:</p>
-                                <a id="restore-url">点击我访问</a>
-                                <p>提取码:</p>
-                                <p id="token"></p>
-                            </div>
-                            <div class="col-sm-12">
-                                <button class="btn btn-default" type="button" id="store-message">暂存</button>
-                            </div>
-
-                        </div>
-
-                    </form>
-
+                    <p>提取码:</p>
+                   <p th:text="${token}">提取码</p>
+                    <p>消息内容:</p>
+                    <div  th:text="${message}" >消息内容</div>
 
                 </div>
             </div>
@@ -115,41 +89,6 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script language='javascript' th:inline="javascript">
-    var baseUrl = [[${baseUrl}]];
-</script>
-<script>
-    $(function () {
-
-
-        $(document).on('click','#store-message',function () {
-            var message = $('#message').val();
-
-            $.post('/tool/storeMessage',{content:message},function(data){
-                var restoreUrl = "/tool/getMessage?token="+data.token;
-                $('#restore-url').attr("href",restoreUrl);
-                $('#restore-url').text(baseUrl+restoreUrl);
-
-                $('#token').html(data.token);
-
-            })
-
-
-        })
-
-
-    });
-
-
-
-
-
-
-
-
-
-
-</script>
 
 </body>
 </html>

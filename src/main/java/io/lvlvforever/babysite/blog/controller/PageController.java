@@ -3,8 +3,10 @@ package io.lvlvforever.babysite.blog.controller;
 import io.lvlvforever.babysite.blog.service.ArticleService;
 import io.lvlvforever.babysite.blog.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +20,11 @@ import java.util.List;
 public class PageController {
     @Autowired
     private ArticleService articleService;
+    @Value("${server.base.url}")
+    private String baseUrl;
+
+
+
     @GetMapping("")
     public String index(Model model) {
 
@@ -39,11 +46,19 @@ public class PageController {
         return "tool/timestamp";
     }
     @GetMapping("tool/message")
-    public String message() {
+    public String message(Model model) {
+
+
+        String messageUrl = baseUrl + "/tool/getMessage?token=";
+        model.addAttribute("messageUrl", messageUrl);
+        model.addAttribute("baseUrl", baseUrl);
         return "tool/message";
     }
     @GetMapping("tool/myfile")
-    public String myfile() {
+    public String myfile(Model model) {
+        String fileUrl = baseUrl + "/tool/getFile?token=";
+        model.addAttribute("fileUrl", fileUrl);
+        model.addAttribute("baseUrl", baseUrl);
         return "tool/myfile";
     }
     @GetMapping("tool/base64")
