@@ -23,6 +23,13 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        button, input {
+            outline: none;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -41,7 +48,7 @@
 
     <div class="blog-header">
         <h1 class="blog-title">Hello World ! </h1>
-        <p class="lead blog-description">记录自己人生的点滴</p>
+        <p class="lead blog-description"></p>
     </div>
 
     <div class="row">
@@ -51,31 +58,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">当前时间</h3>
-                </div>
-                <div class="panel panel-body">
-
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-sm-5">
-                                <span>当前时间:</span>
-                                <p class="form-control-static" id="curTime">2019-02-20 10:00:00</p>
-                            </div>
-                            <div class="col-sm-5">
-                                <span>当前毫秒:</span>
-                                <p class="form-control-static" id="curStamp">150000000</p>
-                            </div>
-                        </div>
-
-                    </form>
-
-
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">时间戳转换为时间</h3>
+                    <h3 class="panel-title">基本base64编解码</h3>
                 </div>
                 <div class="panel panel-body">
 
@@ -84,30 +67,16 @@
 
 
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="timestamp" placeholder="时间戳...">
+                                <textarea type="text" class="form-control" id="basic-content" placeholder="原内容"></textarea>
 
                             </div>
-                            <div class="col-sm-2">
-                                <select class="form-control" id="timeType">
-                                    <option value="1">毫秒</option>
-                                    <option value="2">秒</option>
-                                </select>
-
-                            </div>
-
                             <div class="col-sm-1">
 
-                                <button type="button" class="btn btn-primary form-control-static" id="stamp2timeBtn">转换</button>
+                                <button type="button" class="btn btn-primary form-control-static" id="basic-transfer">转换</button>
                             </div>
 
                             <div class="col-sm-3">
-                                <select class="form-control">
-                                    <option value="1">yyyy-MM-dd HH:mm:ss</option>
-                                    <!--<option value="2">yyyy</option>-->
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <p  class="" id="stamp2time"></p>
+                                <textarea type="text" class="form-control" id="basic-base64" placeholder="base64编码"></textarea>
 
                             </div>
 
@@ -198,56 +167,29 @@
 
     $(function () {
 
-        setInterval(refreshCurTime, 1000);
 
-        $(document).on('click','#time2stampBtn',function () {
-
-            $.get('/tool/time2stamp?time='+$('#time').val(),function(data){
-                $('#time2stamp').html(data.time);
-
-            })
-
-
-        })
-
-        $(document).on('click','#stamp2timeBtn',function () {
-
-            var timeType = $('#timeType').val();
-            var timestamp = $('#timestamp').val();
-            var url = '/tool/stamp2time?stamp=' + timestamp + '&timeType=' + timeType;
-
-            $.get(url,function(data){
-                $('#stamp2time').html(data.time);
-
-            })
+        $(document).on('click','#basic-transfer',function () {
+            var content = $('#basic-content').val();
+            var base64 = $("#basic-base64").val();
+            if (content) {
+                $.get("/tool/basicBase64",{content:content},function (data) {
+                    $("#basic-base64").val(data.data);
+                })
+            }else{
+                $.get("/tool/basicBase64",{encoded:base64},function (data) {
+                    $("#basic-content").val(data.data);
+                })
+            }
 
 
         })
+
+
 
 
     });
 
-    function refreshCurTime() {
 
-        var stamp = new Date().getTime();
-        $('#curStamp').html(stamp);
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        var hour = date.getHours();
-        var minute = date.getMinutes();
-        var second = date.getSeconds();
-        $('#curTime').html(year + '-' + padding(month) + '-' + padding(day) + ' ' + padding(hour) + ':' + padding(minute) + ':' + padding(second));
-
-    }
-
-    function padding(value) {
-        if (value < 10) {
-            return '0' + value;
-        }
-        return value;
-    }
 
 
 
