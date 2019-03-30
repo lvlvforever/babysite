@@ -14,6 +14,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +29,7 @@ import java.util.Map;
 /**
  * Created by lvlvforever on 2019/2/21.
  */
-@RestController
+@Controller
 @RequestMapping("/tool")
 public class ToolController {
     @Autowired
@@ -42,12 +44,14 @@ public class ToolController {
 
     @Autowired
     private MessageRepo messageRepo;
+    @ResponseBody
     @GetMapping("time2stamp")
     public Map<String, Object> time2stamp(@NotBlank String time) {
         Map<String, Object> map = CommonRetUtil.retSuccess();
         map.put("time", DateUtils.parseDateToTimestampWithDefaultPattern(time));
         return map;
     }
+    @ResponseBody
     @GetMapping("stamp2time")
     public Map<String, Object> stamp2time(@NotNull Long stamp,Integer timeType) {
 
@@ -58,17 +62,17 @@ public class ToolController {
         return map;
     }
     @GetMapping("getMessage")
-    public Map<String, Object> getMessage(@NotNull String token) {
+    public String getMessage(@NotNull String token, Model model) {
 
-        Map<String, Object> map = CommonRetUtil.retNotFound();
 
         Message message = messageRepo.findByToken(token);
         if (message != null) {
-            map = CommonRetUtil.retSuccess();
-            map.put("content", message.getContent());
+            model.addAttribute("token", token);
+            model.addAttribute("message", message.getContent());
         }
-        return map;
+        return "/tool/myMessage";
     }
+    @ResponseBody
     @PostMapping("storeMessage")
     public Map<String, Object> storeMessage(@NotNull String content) {
 
@@ -82,7 +86,7 @@ public class ToolController {
         map.put("token", token);
         return map;
     }
-
+    @ResponseBody
     @PostMapping("storeFile")
     public Map<String, Object> storeFile(MultipartFile file) {
         Map<String, Object> map;
@@ -104,6 +108,7 @@ public class ToolController {
         }
         return map;
     }
+    @ResponseBody
     @GetMapping("getFile")
     public void downloadFile(@RequestParam  String token,HttpServletResponse response) {
         UserFile userFile = userFileService.findByToken(token);
