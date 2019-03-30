@@ -2,8 +2,8 @@
 my site backend
 # TODO
 
-- [ ]  文件上传搞定
-- [ ]  文件的定期删除
+- [x]  文件上传搞定
+- [x]  文件的定期删除
 - [ ]  base64 
 - [ ]  spring security接入
 - [ ]  购买域名 主机 备案
