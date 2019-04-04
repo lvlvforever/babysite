@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.xml.ws.ServiceMode;
+import java.util.List;
 
 /**
  * Created by lvlvforever on 2019/2/16.
@@ -26,6 +27,12 @@ public class TagService {
         return stored.getObjectId();
     }
 
+    public void remove(String objectId) {
+        repo.deleteById(objectId);
+    }
 
+    public List<Tag> list() {
+        return repo.findAll();
+    }
 
 }

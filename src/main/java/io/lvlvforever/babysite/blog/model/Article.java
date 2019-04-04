@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lvlvforever on 2019/2/16.
@@ -22,7 +24,8 @@ public class Article {
     private Date date;
 
     private Collection collection;
-    private Tag tag;
+    private Set<Tag> tags;
+
 
 
 

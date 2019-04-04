@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>添加文章</title>
+    <title>添加标签</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -60,9 +60,9 @@
     <div class="container-fluid" style="width: 80%">
       <div class="row">
         <div class="col-sm-1 col-md-1 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="/admin">文章</a></li>
-            <li><a href="/tag">标签</a></li>
+        <ul class="nav nav-sidebar">
+            <li ><a href="/admin">文章</a></li>
+            <li class="active"><a href="/tag">标签</a></li>
             <li  ><a href="/collection">文集</a></li>
             <!--<li><a href="#">Analytics</a></li>-->
             <!--<li><a href="#">Export</a></li>-->
@@ -85,13 +85,9 @@
 
           <form class="form-inline" id="addForm">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="输入文章标题" name="name" style="width: 60rem;margin-bottom: 10px;margin-top: 10px;">
+              <input type="text" class="form-control" placeholder="输入标签名称" name="name" style="width: 60rem;margin-bottom: 10px;margin-top: 10px;">
             </div>
-            <div id="test-editormd">
-              <textarea class="editormd-markdown-textarea" style="display:none;" name="code"></textarea>
-              <textarea class="editormd-html-textarea" name="html"></textarea>
 
-            </div>
             <button type="button" class="btn btn-default" id="saveBtn">保存</button>
           </form>
 
@@ -104,8 +100,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <script th:src="@{/js/editormd.min.js}"></script>
-    <script th:src="@{/js/article/addArticle.js}"></script>
+    <script th:src="@{/js/article/addTag.js}"></script>
 
 
 

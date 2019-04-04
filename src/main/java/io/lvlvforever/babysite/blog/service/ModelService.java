@@ -1,8 +1,10 @@
 package io.lvlvforever.babysite.blog.service;
 
 import io.lvlvforever.babysite.blog.model.Article;
+import io.lvlvforever.babysite.blog.model.Collection;
 import io.lvlvforever.babysite.blog.model.Tag;
 import io.lvlvforever.babysite.blog.param.ArticleParam;
+import io.lvlvforever.babysite.blog.param.CollectionParam;
 import io.lvlvforever.babysite.blog.param.TagParam;
 import io.lvlvforever.babysite.blog.vo.ArticleVO;
 import io.lvlvforever.babysite.common.util.DateUtils;
@@ -52,16 +54,6 @@ public class ModelService {
 
     }
 
-
-
-
-
-
-
-
-
-
-
     public Tag parseTagParam(TagParam param) {
         if (param == null) {
             return null;
@@ -71,5 +63,13 @@ public class ModelService {
         tag.setId(mongoAutoIdUtil.getNextSequence(param));
         return tag;
     }
-
+    public Collection parseCollectionParam(CollectionParam param) {
+        if (param == null) {
+            return null;
+        }
+        Collection collection = new Collection();
+        BeanUtils.copyProperties(param, collection, ServiceUtil.getNullPropertyNames(param));
+        collection.setId(mongoAutoIdUtil.getNextSequence(param));
+        return collection;
+    }
 }

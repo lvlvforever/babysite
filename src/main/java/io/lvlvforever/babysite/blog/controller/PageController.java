@@ -1,6 +1,10 @@
 package io.lvlvforever.babysite.blog.controller;
 
+import io.lvlvforever.babysite.blog.model.Collection;
+import io.lvlvforever.babysite.blog.model.Tag;
 import io.lvlvforever.babysite.blog.service.ArticleService;
+import io.lvlvforever.babysite.blog.service.CollectionService;
+import io.lvlvforever.babysite.blog.service.TagService;
 import io.lvlvforever.babysite.blog.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +24,12 @@ import java.util.List;
 public class PageController {
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private TagService tagService;
+    @Autowired
+    private CollectionService collectionService;
+
+
     @Value("${server.base.url}")
     private String baseUrl;
 
@@ -47,8 +57,6 @@ public class PageController {
     }
     @GetMapping("tool/message")
     public String message(Model model) {
-
-
         String messageUrl = baseUrl + "/tool/getMessage?token=";
         model.addAttribute("messageUrl", messageUrl);
         model.addAttribute("baseUrl", baseUrl);
@@ -67,6 +75,17 @@ public class PageController {
     }
 
 
+    @GetMapping("tag")
+    public String tag(Model model) {
+        List<Tag> tags = tagService.list();
+        model.addAttribute("tags", tags);
+        return "backend/tag";
+    }
 
-
+    @GetMapping("collection")
+    public String collection(Model model) {
+        List<Collection> collections = collectionService.list();
+        model.addAttribute("collections", collections);
+        return "backend/collection";
+    }
 }

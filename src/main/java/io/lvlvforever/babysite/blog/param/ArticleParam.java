@@ -5,6 +5,7 @@ import io.lvlvforever.babysite.counter.CountIndex;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by lvlvforever on 2019/2/16.
@@ -15,6 +16,7 @@ public class ArticleParam implements AutoIncrementable {
     private String name;
     private String code;
     private String html;
+    private List<String> tags;
 
     @Override
     public String getAutoIncrementField() {

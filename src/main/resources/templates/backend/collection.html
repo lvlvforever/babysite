@@ -9,14 +9,10 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>添加文章</title>
+    <title>dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-
-        <link rel="stylesheet" th:href="@{/css/style.css}" />
-        <link rel="stylesheet" th:href="@{/css/editormd.css}" />
 
 
     <!-- Custom styles for this template -->
@@ -60,10 +56,11 @@
     <div class="container-fluid" style="width: 80%">
       <div class="row">
         <div class="col-sm-1 col-md-1 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="/admin">文章</a></li>
-            <li><a href="/tag">标签</a></li>
-            <li  ><a href="/collection">文集</a></li>
+
+        <ul class="nav nav-sidebar">
+            <li ><a href="/admin">文章</a></li>
+            <li ><a href="/tag">标签</a></li>
+            <li class="active" ><a href="/collection">文集</a></li>
             <!--<li><a href="#">Analytics</a></li>-->
             <!--<li><a href="#">Export</a></li>-->
           </ul>
@@ -82,31 +79,48 @@
         </div>
         <div class="col-sm-11  col-md-11  main">
           <h2 class="sub-header"></h2>
+          <button class="btn btn-default js-addCollection">新建文集</button>
 
-          <form class="form-inline" id="addForm">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="输入文章标题" name="name" style="width: 60rem;margin-bottom: 10px;margin-top: 10px;">
-            </div>
-            <div id="test-editormd">
-              <textarea class="editormd-markdown-textarea" style="display:none;" name="code"></textarea>
-              <textarea class="editormd-html-textarea" name="html"></textarea>
 
-            </div>
-            <button type="button" class="btn btn-default" id="saveBtn">保存</button>
-          </form>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>名称</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
 
+              <tr th:each="collection,stat : ${collections}">
+
+                  <td th:text="${collection.id}">自增id</td>
+                  <td th:text="${collection.name}">名称</td>
+                  <td>
+                      <button type="button" class="btn btn-danger js-del"  th:attr="data-id=${collection.objectId}">删除</button>
+                  </td>
+
+
+              </tr>
+
+
+
+
+                
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
-
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-    <script th:src="@{/js/editormd.min.js}"></script>
-    <script th:src="@{/js/article/addArticle.js}"></script>
-
+    <script th:src="@{/js/article/dashboard-collections.js}"></script>
 
 
   </body>
