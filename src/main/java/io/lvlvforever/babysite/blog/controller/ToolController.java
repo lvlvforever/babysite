@@ -11,6 +11,7 @@ import io.lvlvforever.babysite.common.service.MongoGridFsService;
 import io.lvlvforever.babysite.common.util.CommonRetUtil;
 import io.lvlvforever.babysite.common.util.DateUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.MongoDbFactory;
@@ -24,6 +25,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.Map;
 
 /**
@@ -134,5 +136,46 @@ public class ToolController {
             System.err.println(e);
         }
     }
+
+    @ResponseBody
+    @GetMapping("basicBase64")
+    public Map<String, Object> basicBase64(@RequestParam(required = false) String content, @RequestParam(required = false) String encoded) {
+        Map<String, Object> map = CommonRetUtil.retSuccess();
+        if (StringUtils.isNotBlank(content)) {
+            byte[] result = Base64.getEncoder().encode(content.getBytes());
+            map.put("data", new String(result));
+        }else{
+            byte[] result = Base64.getDecoder().decode(encoded.getBytes());
+            map.put("data", new String(result));
+        }
+        return map;
+    }
+    @ResponseBody
+    @GetMapping("urlSafeBase64")
+    public Map<String, Object> urlSafeBase64(@RequestParam(required = false) String content, @RequestParam(required = false) String encoded) {
+        Map<String, Object> map = CommonRetUtil.retSuccess();
+        if (StringUtils.isNotBlank(content)) {
+            byte[] result = Base64.getUrlEncoder().encode(content.getBytes());
+            map.put("data", new String(result));
+        }else{
+            byte[] result = Base64.getUrlDecoder().decode(encoded.getBytes());
+            map.put("data", new String(result));
+        }
+        return map;
+    }
+    @ResponseBody
+    @GetMapping("mimeBase64")
+    public Map<String, Object> mimeBase64(@RequestParam(required = false) String content, @RequestParam(required = false) String encoded) {
+        Map<String, Object> map = CommonRetUtil.retSuccess();
+        if (StringUtils.isNotBlank(content)) {
+            byte[] result = Base64.getMimeEncoder().encode(content.getBytes());
+            map.put("data", new String(result));
+        }else{
+            byte[] result = Base64.getMimeDecoder().decode(encoded.getBytes());
+            map.put("data", new String(result));
+        }
+        return map;
+    }
+
 
 }
