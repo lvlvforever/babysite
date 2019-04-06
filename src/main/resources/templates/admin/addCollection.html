@@ -14,11 +14,6 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-
-        <link rel="stylesheet" th:href="@{/css/style.css}" />
-        <link rel="stylesheet" th:href="@{/css/editormd.css}" />
-
-
     <!-- Custom styles for this template -->
     <link th:href="@{/css/dashboard.css}" rel="stylesheet">
 
@@ -61,9 +56,9 @@
       <div class="row">
         <div class="col-sm-1 col-md-1 sidebar">
           <ul class="nav nav-sidebar">
-            <li ><a href="/admin">文章</a></li>
-            <li><a href="/tag">标签</a></li>
-            <li class="active"><a href="/collection">文集</a></li>
+            <li><a href="/admin/article/">文章</a></li>
+            <li><a href="/admin/tag">标签</a></li>
+            <li class="active"><a href="/admin/collection">文集</a></li>
             <!--<li><a href="#">Analytics</a></li>-->
             <!--<li><a href="#">Export</a></li>-->
           </ul>
@@ -84,6 +79,8 @@
           <h2 class="sub-header"></h2>
 
           <form class="form-inline" id="addForm">
+            <input type="hidden" th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}" />
             <div class="form-group">
               <input type="text" class="form-control" placeholder="输入文集名称" name="name" style="width: 60rem;margin-bottom: 10px;margin-top: 10px;">
             </div>
@@ -100,7 +97,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <script th:src="@{/js/article/addCollection.js}"></script>
+    <script th:src="@{/js/admin/addCollection.js}"></script>
 
 
 

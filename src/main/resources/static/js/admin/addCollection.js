@@ -14,9 +14,9 @@
     function initialTriggerEvent() {
         $(document).on('click', '#saveBtn', function () {
             var param = $('#addForm').serialize();
-            $.post('/blog/collection/add',param,function(data){
+            $.post('/admin/collection/add',param,function(data){
                 if (data.code === 1) {
-                    window.location.href = '/collection';
+                    window.location.href = '/admin/collection';
                 }else{
                     alert("error");
                 }

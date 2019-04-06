@@ -1,5 +1,6 @@
-package io.lvlvforever.babysite.blog.controller;
+package io.lvlvforever.babysite.blog.controller.admin;
 
+import io.lvlvforever.babysite.blog.model.Collection;
 import io.lvlvforever.babysite.blog.param.CollectionParam;
 import io.lvlvforever.babysite.blog.param.TagParam;
 import io.lvlvforever.babysite.blog.service.CollectionService;
@@ -7,15 +8,17 @@ import io.lvlvforever.babysite.blog.service.TagService;
 import io.lvlvforever.babysite.common.util.CommonRetUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by lvlvforever on 2019/2/17.
  */
 @Controller
-@RequestMapping("blog/collection")
+@RequestMapping("admin/collection")
 public class CollectionController {
 
     @Autowired
@@ -23,7 +26,7 @@ public class CollectionController {
 
     @GetMapping("addCollectionView")
     public String addCollectionView() {
-        return "backend/addCollection";
+        return "admin/addCollection";
     }
 
 
@@ -43,7 +46,12 @@ public class CollectionController {
         service.remove(objectId);
         return map;
     }
-
+    @GetMapping("")
+    public String collection(Model model) {
+        List<Collection> collections = service.list();
+        model.addAttribute("collections", collections);
+        return "admin/collection";
+    }
 
 
 }

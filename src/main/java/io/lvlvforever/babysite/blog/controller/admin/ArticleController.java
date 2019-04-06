@@ -1,4 +1,4 @@
-package io.lvlvforever.babysite.blog.controller;
+package io.lvlvforever.babysite.blog.controller.admin;
 
 import io.lvlvforever.babysite.blog.param.ArticleParam;
 import io.lvlvforever.babysite.blog.service.ArticleService;
@@ -15,24 +15,11 @@ import java.util.Map;
 /**
  * Created by lvlvforever on 2019/2/16.
  */
-@Controller
-@RequestMapping("/blog/article")
+@Controller("adminArticleController")
+@RequestMapping("admin/article")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
-
-
-    @GetMapping("")
-    public String getArticle(@RequestParam String id,Model model) {
-        ArticleVO vo = articleService.getArticle(id);
-        if (vo == null) {
-            return "error";
-        }
-        model.addAttribute("article", vo);
-        return "front/article";
-
-    }
-
 
     @ResponseBody
     @PostMapping("add")
@@ -45,20 +32,20 @@ public class ArticleController {
 
     @GetMapping("addArticleView")
     public String addArticlePre() {
-        return "backend/addArticle";
+        return "admin/addArticle";
     }
 
 
-    @GetMapping("articles")
+    @GetMapping("")
     public String queryArticles(Model model) {
 
         List<ArticleVO> articles = articleService.queryArticles();
         model.addAttribute("articles", articles);
-        return "backend/articles";
+        return "admin/articles";
     }
 
     @ResponseBody
-    @DeleteMapping("delete")
+    @DeleteMapping("remove")
     public Map<String, Object> deleteArticle(@RequestParam  String objectId) {
         boolean flag = articleService.delete(objectId);
         Map<String, Object> map = CommonRetUtil.retSuccess();

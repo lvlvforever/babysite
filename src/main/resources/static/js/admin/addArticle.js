@@ -1,5 +1,6 @@
 ;(function(){
 
+    var textEditor;
 
 
     $(function() {
@@ -8,15 +9,22 @@
     });
 
     function init() {
-
+        testEditor = editormd("test-editormd", {
+            width   : "100%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "/lib/",
+            saveHTMLToTextarea : true
+        });
     }
 
     function initialTriggerEvent() {
         $(document).on('click', '#saveBtn', function () {
             var param = $('#addForm').serialize();
-            $.post('/blog/tag/add',param,function(data){
+
+            $.post('/admin/article/add',param,function(data){
                 if (data.code === 1) {
-                    window.location.href = '/tag';
+                    window.location.href = '/admin';
                 }else{
                     alert("error");
                 }

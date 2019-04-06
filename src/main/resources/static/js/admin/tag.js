@@ -17,16 +17,16 @@
         $(document).on('click', '.js-del', function () {
             var $this = $(this);
             var id = $this.data("id");
-            $.post('/blog/collection/remove',{objectId:id,_method:"DELETE"},function(data){
+            $.post('/admin/tag/remove',{objectId:id,_method:"DELETE"},function(data){
                 if (data.code === 1) {
-                    window.location.href = '/collection';
+                    window.location.href = '/tag';
                 }else{
                     alert("error");
                 }
             });
         });
-        $(document).on('click', '.js-addCollection', function () {
-            window.location.href = "/blog/collection/addCollectionView";
+        $(document).on('click', '.js-addTag', function () {
+            window.location.href = "/admin/tag/addTagView";
         });
     }
 

@@ -17,7 +17,7 @@
         $(document).on('click', '.js-del', function () {
             var $this = $(this);
             var id = $this.data("id");
-            $.post('/blog/article/delete',{objectId:id,_method:"DELETE"},function(data){
+            $.post('/admin/article/delete',{objectId:id,_method:"DELETE"},function(data){
                 if (data.code === 1) {
                     window.location.href = '/admin';
                 }else{
@@ -26,7 +26,7 @@
             });
         });
         $(document).on('click', '.js-addArticle', function () {
-            window.location.href = "/blog/article/addArticleView";
+            window.location.href = "/admin/article/addArticleView";
         });
 
 

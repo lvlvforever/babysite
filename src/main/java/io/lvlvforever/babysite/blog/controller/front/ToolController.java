@@ -1,4 +1,4 @@
-package io.lvlvforever.babysite.blog.controller;
+package io.lvlvforever.babysite.blog.controller.front;
 
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;

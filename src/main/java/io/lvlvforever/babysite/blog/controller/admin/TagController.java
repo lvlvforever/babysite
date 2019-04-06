@@ -1,5 +1,7 @@
-package io.lvlvforever.babysite.blog.controller;
+package io.lvlvforever.babysite.blog.controller.admin;
 
+import io.lvlvforever.babysite.blog.model.Collection;
+import io.lvlvforever.babysite.blog.model.Tag;
 import io.lvlvforever.babysite.blog.param.TagParam;
 import io.lvlvforever.babysite.blog.service.TagService;
 import io.lvlvforever.babysite.common.util.CommonRetUtil;
@@ -7,15 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ConcurrentModel;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by lvlvforever on 2019/2/17.
  */
 @Controller
-@RequestMapping("blog/tag")
+@RequestMapping("admin/tag")
 public class TagController {
 
     @Autowired
@@ -23,7 +27,7 @@ public class TagController {
 
     @GetMapping("addTagView")
     public String addTagView() {
-        return "backend/addTag";
+        return "admin/addTag";
     }
 
 
@@ -43,6 +47,13 @@ public class TagController {
         tagService.remove(objectId);
         return map;
     }
+    @GetMapping("")
+    public String tag(Model model) {
+        List<Tag> tags = tagService.list();
+        model.addAttribute("tags", tags);
+        return "admin/tag";
+    }
+
 
 
 
