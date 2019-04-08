@@ -21,25 +21,25 @@ public class FakeLog implements CommandLineRunner {
     private RestTemplate restTemplate;
     @Override
     public void run(String... args) throws Exception {
-        String path = "E:\\log\\log.json";
-        List<String> lines = FileUtils.readLines(new File(path), "UTF-8");
-        for (String line : lines) {
-            System.err.println(line);
-
-            if (StringUtils.isBlank(line) || !line.startsWith("{")) {
-                continue;
-            }
-            if (!line.contains("bookGroup")) {
-                continue;
-            }
-            String url = "https://ptactivity.reader.qq.com/activity/sumWithJson?data=";
-            String data = URLEncoder.encode(line, "UTF-8");
-            url += data;
-
-            String result = restTemplate.getForObject(url, String.class);
-
-            System.err.println(result);
-        }
+//        String path = "E:\\log\\log.json";
+//        List<String> lines = FileUtils.readLines(new File(path), "UTF-8");
+//        for (String line : lines) {
+//            System.err.println(line);
+//
+//            if (StringUtils.isBlank(line) || !line.startsWith("{")) {
+//                continue;
+//            }
+//            if (!line.contains("bookGroup")) {
+//                continue;
+//            }
+//            String url = "https://ptactivity.reader.qq.com/activity/sumWithJson?data=";
+//            String data = URLEncoder.encode(line, "UTF-8");
+//            url += data;
+//
+//            String result = restTemplate.getForObject(url, String.class);
+//
+//            System.err.println(result);
+//        }
 
 
     }
