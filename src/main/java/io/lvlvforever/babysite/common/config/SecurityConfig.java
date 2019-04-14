@@ -26,17 +26,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         manager.createUser(User.withUsername("dai").password(encoder.encode("daipeng123")).roles("USER").build());
         return manager;
     }
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .anyRequest().permitAll()
-//                .and()
-//                .formLogin()
-//                .defaultSuccessUrl("/admin",true)
-//                .and()
-//                .httpBasic();
-        http.authorizeRequests().anyRequest().permitAll();
+        http
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .formLogin()
+                .defaultSuccessUrl("/admin",true)
+                .and()
+                .httpBasic();
+//        http.authorizeRequests().anyRequest().permitAll();
         http.csrf().disable();
         System.err.println(http);
     }
