@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-sm-12">
                                 <p>提取地址是:</p>
-                                <a id="restore-url">点击我访问</a>
+                                <a id="restore-url"></a>
                                 <p>提取码:</p>
                                 <p id="token"></p>
                             </div>
@@ -151,8 +151,9 @@
                     }
                 }
             }).done(function(data){
-                var url = data.baseUrl + '/tool/getFile?token=' + data.token;
+                var url = data.baseUrl + '/file?token=' + data.token;
                 $('#restore-url').attr("href",url);
+                $('#restore-url').text(url);
                 $('#token').html(data.token);
             })
         })

@@ -126,7 +126,7 @@
             var message = $('#message').val();
 
             $.post('/tool/storeMessage',{content:message},function(data){
-                var restoreUrl = "/tool/getMessage?token="+data.token;
+                var restoreUrl = "/message?token=" + data.token;
                 $('#restore-url').attr("href",restoreUrl);
                 $('#restore-url').text(baseUrl+restoreUrl);
 
