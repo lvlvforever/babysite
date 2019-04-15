@@ -68,14 +68,14 @@ public class PageController {
     }
     @GetMapping("tool/message")
     public String message(Model model) {
-        String messageUrl = baseUrl + "/tool/getMessage?token=";
+        String messageUrl = baseUrl + "/message?token=";
         model.addAttribute("messageUrl", messageUrl);
         model.addAttribute("baseUrl", baseUrl);
         return "tool/message";
     }
     @GetMapping("tool/myfile")
     public String myfile(Model model) {
-        String fileUrl = baseUrl + "/tool/getFile?token=";
+        String fileUrl = baseUrl + "/file?token=";
         model.addAttribute("fileUrl", fileUrl);
         model.addAttribute("baseUrl", baseUrl);
         return "tool/myfile";
