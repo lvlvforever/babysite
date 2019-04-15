@@ -127,6 +127,6 @@ public class PageController {
             model.addAttribute("token", token);
             model.addAttribute("message", message.getContent());
         }
-        return "/tool/myMessage";
+        return "tool/myMessage";
     }
 }
