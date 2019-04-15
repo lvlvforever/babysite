@@ -70,6 +70,9 @@
                                 <input id="myfile" type="file">
 
                             </div>
+                            <div class="cpl-sm-12">
+                                <span id="upload-rate"></span>
+                            </div>
                             <div class="col-sm-12">
                                 <p>提取地址是:</p>
                                 <a id="restore-url">点击我访问</a>
@@ -140,7 +143,9 @@
                     if (xhr.upload) {
                         xhr.upload.addEventListener("progress", function (evt) {
                             var percent = parseInt((evt.loaded / evt.total) * 100) + '%';
-                            console.log(percent);
+                            console.log(percent)
+                            $('#upload-rate').html(percent);
+
                         }, false);
                         return xhr;
                     }

@@ -127,6 +127,8 @@ public class ToolController {
             String name = file.getFilename();
             response.setContentType("application/octet-stream");
             String downloadName = URLEncoder.encode(name,"UTF-8").replaceAll("\\+", "%20");
+            response.setContentLengthLong(file.getLength());
+
             response.setHeader("Content-Disposition", "attachment;filename*=utf-8'zh_cn'"+downloadName);
             GridFSBucket bucket = GridFSBuckets.create(mongoDbFactory.getDb());
             bucket.downloadToStream(file.getId(), out);
