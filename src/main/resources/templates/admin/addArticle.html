@@ -81,15 +81,31 @@
         <div class="col-sm-11  col-md-11  main">
           <h2 class="sub-header"></h2>
 
-          <form class="form-inline" id="addForm">
+            <form class="form-horizontal" id="addForm">
             <input type="hidden" name="${_csrf.parameterName}"
                    value="${_csrf.token}" />
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="输入文章标题" name="name" style="width: 60rem;margin-bottom: 10px;margin-top: 10px;">
+                <input class="form-control" id="article-name" name="name" placeholder="输入文章标题"
+                       style="width: 60rem;margin-bottom: 10px;margin-top: 10px;" type="text">
             </div>
+
+                <div class="form-group">
+                    <select class="form-control" id="article-collection" name="collection">
+
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="article-tag" multiple name="tag">
+
+
+                    </select>
+            </div>
+
             <div id="test-editormd">
-              <textarea class="editormd-markdown-textarea" style="display:none;" name="code"></textarea>
-              <textarea class="editormd-html-textarea" name="html"></textarea>
+                <textarea class="editormd-markdown-textarea" id="article-code" name="code"
+                          style="display:none;"></textarea>
+                <textarea class="editormd-html-textarea" id="article-html" name="html"></textarea>
 
             </div>
             <button type="button" class="btn btn-default" id="saveBtn">保存</button>
@@ -106,6 +122,7 @@
 
     <script th:src="@{/js/editormd.min.js}"></script>
     <script th:src="@{/js/admin/addArticle.js}"></script>
+    <script src="https://cdn.bootcss.com/jquery.serializeJSON/2.9.0/jquery.serializejson.js"></script>
 
 
 

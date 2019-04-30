@@ -127,6 +127,12 @@ public class PageController {
             model.addAttribute("token", token);
             model.addAttribute("message", message.getContent());
         }
+
         return "tool/myMessage";
+    }
+
+    @GetMapping("login")
+    public String login() {
+        return "admin/login";
     }
 }

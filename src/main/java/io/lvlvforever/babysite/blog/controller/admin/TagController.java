@@ -1,14 +1,11 @@
 package io.lvlvforever.babysite.blog.controller.admin;
 
-import io.lvlvforever.babysite.blog.model.Collection;
 import io.lvlvforever.babysite.blog.model.Tag;
 import io.lvlvforever.babysite.blog.param.TagParam;
 import io.lvlvforever.babysite.blog.service.TagService;
 import io.lvlvforever.babysite.common.util.CommonRetUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,7 +51,13 @@ public class TagController {
         return "admin/tag";
     }
 
-
+    @ResponseBody
+    @GetMapping("list")
+    public Map<String, Object> list(Model model) {
+        Map<String, Object> map = CommonRetUtil.retSuccess();
+        map.put("data", tagService.list());
+        return map;
+    }
 
 
 }

@@ -19,7 +19,7 @@
             var id = $this.data("id");
             $.post('/admin/article/delete',{objectId:id,_method:"DELETE"},function(data){
                 if (data.code === 1) {
-                    window.location.href = '/admin';
+                    window.location.href = '/admin/article';
                 }else{
                     alert("error");
                 }
@@ -31,14 +31,8 @@
 
 
         $(document).on('click', '.js-query', function () {
-            // var param = $('#addForm').serialize();
-            // $.post('/blog/article/add',param,function(data){
-            //     if (data.code === 1) {
-            //         window.location.href = '/admin';
-            //     }else{
-            //         alert("error");
-            //     }
-            // });
+            var url = '/article?id=' + $(this).data('id');
+            window.open(url, 'blank')
         });
     }
 

@@ -2,9 +2,7 @@ package io.lvlvforever.babysite.blog.controller.admin;
 
 import io.lvlvforever.babysite.blog.model.Collection;
 import io.lvlvforever.babysite.blog.param.CollectionParam;
-import io.lvlvforever.babysite.blog.param.TagParam;
 import io.lvlvforever.babysite.blog.service.CollectionService;
-import io.lvlvforever.babysite.blog.service.TagService;
 import io.lvlvforever.babysite.common.util.CommonRetUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,6 +49,14 @@ public class CollectionController {
         List<Collection> collections = service.list();
         model.addAttribute("collections", collections);
         return "admin/collection";
+    }
+
+    @ResponseBody
+    @GetMapping("list")
+    public Map<String, Object> list() {
+        Map<String, Object> map = CommonRetUtil.retSuccess();
+        map.put("data", service.list());
+        return map;
     }
 
 

@@ -19,7 +19,7 @@
             var id = $this.data("id");
             $.post('/admin/collection/remove',{objectId:id,_method:"DELETE"},function(data){
                 if (data.code === 1) {
-                    window.location.href = '/collection';
+                    window.location.href = '/admin/collection';
                 }else{
                     alert("error");
                 }

@@ -16,7 +16,7 @@
             var param = $('#addForm').serialize();
             $.post('/admin/tag/add',param,function(data){
                 if (data.code === 1) {
-                    window.location.href = '/tag';
+                    window.location.href = '/admin/tag';
                 }else{
                     alert("error");
                 }

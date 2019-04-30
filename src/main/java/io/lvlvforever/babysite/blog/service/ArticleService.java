@@ -3,12 +3,11 @@ package io.lvlvforever.babysite.blog.service;
 import io.lvlvforever.babysite.blog.dao.ArticleRepo;
 import io.lvlvforever.babysite.blog.model.Article;
 import io.lvlvforever.babysite.blog.param.ArticleParam;
-import io.lvlvforever.babysite.blog.param.TagParam;
 import io.lvlvforever.babysite.blog.vo.ArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.ServiceMode;
 import java.util.List;
 
 /**
@@ -49,7 +48,8 @@ public class ArticleService {
 
 
     public List<ArticleVO> queryArticles() {
-        List<Article> articles = repo.findAll();
+        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        List<Article> articles = repo.findAll(sort);
         List<ArticleVO> vos = modelService.parseArticles(articles);
         return vos;
     }

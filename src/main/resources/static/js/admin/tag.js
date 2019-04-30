@@ -19,7 +19,7 @@
             var id = $this.data("id");
             $.post('/admin/tag/remove',{objectId:id,_method:"DELETE"},function(data){
                 if (data.code === 1) {
-                    window.location.href = '/tag';
+                    window.location.href = '/admin/tag';
                 }else{
                     alert("error");
                 }

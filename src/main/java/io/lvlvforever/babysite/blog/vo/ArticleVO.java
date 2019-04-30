@@ -1,9 +1,8 @@
 package io.lvlvforever.babysite.blog.vo;
 
 import lombok.Data;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Date;
+import java.util.List;
 
 /**
  * Created by lvlvforever on 2019/2/17.
@@ -16,4 +15,12 @@ public class ArticleVO {
 
     private String code;
     private String date;
+    private String collection;
+
+
+    private List<String> tags;
+
+
+
+
 }

@@ -88,6 +88,7 @@
                 <tr>
                   <th>序号</th>
                   <th>文章名称</th>
+                  <th>所属文集</th>
                   <th>创建日期</th>
                   <th>操作</th>
                 </tr>
@@ -98,7 +99,9 @@
 
                   <td th:text="${article.id}">1</td>
                   <td th:text="${article.name}">测试增删改查</td>
-                  <td th:text="${article.date}">2019-01-01 00:00:00</td>
+                <td th:text="${article.collection}">测试增删改查</td>
+
+                <td th:text="${article.date}">2019-01-01 00:00:00</td>
                   <td>
                       <button type="button" class="btn btn-default js-query" th:attr="data-id=${article.objectId}">查看</button>
                       <button type="button" class="btn btn-warning js-edit"  th:attr="data-id=${article.objectId}">修改</button>

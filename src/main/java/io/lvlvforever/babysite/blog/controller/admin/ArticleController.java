@@ -23,7 +23,7 @@ public class ArticleController {
 
     @ResponseBody
     @PostMapping("add")
-    public Map<String, Object> addArticle(ArticleParam param) {
+    public Map<String, Object> addArticle(@RequestBody ArticleParam param) {
         Map<String, Object> map = CommonRetUtil.retSuccess();
         String objId = articleService.add(param);
         map.put("objectId", objId);
@@ -31,7 +31,10 @@ public class ArticleController {
     }
 
     @GetMapping("addArticleView")
-    public String addArticlePre() {
+    public String addArticlePre(Model model) {
+
+
+
         return "admin/addArticle";
     }
 
@@ -45,7 +48,7 @@ public class ArticleController {
     }
 
     @ResponseBody
-    @DeleteMapping("remove")
+    @DeleteMapping("delete")
     public Map<String, Object> deleteArticle(@RequestParam  String objectId) {
         boolean flag = articleService.delete(objectId);
         Map<String, Object> map = CommonRetUtil.retSuccess();

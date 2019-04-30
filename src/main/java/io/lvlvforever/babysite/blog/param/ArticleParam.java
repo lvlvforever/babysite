@@ -4,7 +4,6 @@ import io.lvlvforever.babysite.counter.AutoIncrementable;
 import io.lvlvforever.babysite.counter.CountIndex;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +15,7 @@ public class ArticleParam implements AutoIncrementable {
     private String name;
     private String code;
     private String html;
+    private String collection;
     private List<String> tags;
 
     @Override
