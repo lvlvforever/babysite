@@ -24,9 +24,9 @@ public class MongoIndexEnsurance implements CommandLineRunner {
     private MongoTemplate mongoTemplate;
     @Override
     public void run(String... args) throws Exception {
-        logger.debug("command line run");
-        mongoTemplate.indexOps(Message.class).ensureIndex(new Index().on("createTime", Sort.Direction.DESC).expire(48, TimeUnit.HOURS));
-        mongoTemplate.indexOps(UserFile.class).ensureIndex(new Index().on("createTime", Sort.Direction.ASC).expire(48, TimeUnit.HOURS));
+//        logger.debug("command line run");
+//        mongoTemplate.indexOps(Message.class).ensureIndex(new Index().on("createTime", Sort.Direction.DESC).expire(48, TimeUnit.HOURS));
+//        mongoTemplate.indexOps(UserFile.class).ensureIndex(new Index().on("createTime", Sort.Direction.ASC).expire(48, TimeUnit.HOURS));
 
     }
 }
