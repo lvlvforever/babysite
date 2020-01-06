@@ -4,11 +4,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by lvlvforever on 2020/1/5.
  */
 @NoRepositoryBean
-public interface BaseRepo<T, ID extends Serializable> extends MongoRepository<T, ID> {
-
+public interface BaseRepo<T, ID extends Serializable> extends MongoRepository<T, ID>{
+    List<T> list();
 }

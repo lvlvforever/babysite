@@ -26,11 +26,11 @@ public class StudentTask implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        Student student = new Student();
-//        student.setName("123");
-//        Student student1 = new Student();
-//        student1.setName("代鹏");
-//        repo.save(student);
+        Student student = new Student();
+        student.setName("123");
+        Student student1 = new Student();
+        student1.setName("代鹏");
+        repo.save(student);
 //        repo.save(student1);
 //
 //
@@ -38,6 +38,9 @@ public class StudentTask implements CommandLineRunner {
 //        list.add(student);
 //        list.add(student1);
         Classroom classroom = repo2.findById("5e10e3bb037d192a943df0d0").get();
+
+
+        repo.list();
 
 
         System.err.println(classroom);

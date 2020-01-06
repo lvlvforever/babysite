@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.repository.query.MongoEntityInformation;
 import org.springframework.data.mongodb.repository.support.SimpleMongoRepository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lvlvforever on 2020/1/5.
@@ -16,4 +18,11 @@ public class BaseRepoImpl<T, ID extends Serializable> extends SimpleMongoReposit
     public BaseRepoImpl(MongoEntityInformation<T, ID> metadata, MongoOperations mongoOperations) {
         super(metadata, mongoOperations);
     }
+
+    @Override
+    public List<T> list() {
+        System.err.println("query");
+        return new ArrayList<>();
+    }
+
 }
